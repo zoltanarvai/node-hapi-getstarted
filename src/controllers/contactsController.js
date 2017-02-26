@@ -1,5 +1,5 @@
-const ContactsRepository = require('./inMemoryContactsRepo');
-const contactService = require('./contactsService');
+const ContactsRepository = require('../repositories/inMemoryContactsRepo');
+const contactService = require('../services/contactsService');
 const contactsRepo = new ContactsRepository(); //==>Dummy repo for now
 
 const getContact = (request, reply) => {
