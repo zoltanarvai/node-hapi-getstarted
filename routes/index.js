@@ -1,48 +1,37 @@
+const contactsController = require('../controllers/contactsController');
+
 const configureRoutes = () => {
+
     return [
         {
             method: 'GET',
             path: '/',
-            handler: (request, reply) => {
-                reply('Welcome to Contacts Manager API')
-            }
+            handler: (request, reply) => reply('Welcome to Contacts Manager API')
         },
         {
             method: 'GET',
             path: '/contacts/{id}',
-            handler: (request, reply) => {
-                reply('Return a contact')
-            }
+            handler: contactsController.getContact
         },
         {
             method: 'GET',
             path: '/contacts',
-            handler: (request, reply) => {
-                reply('Return all contacts')
-            }
+            handler: contactsController.getContacts
         },
         {
             method: 'POST',
             path: '/contacts',
-            handler: (request, reply) => {
-                reply('Create new contact')
-                    .code(201)
-            }
+            handler: contactsController.createContact
         },
         {
             method: 'PUT',
             path: '/contacts/{id}',
-            handler: (request, reply) => {
-                reply('Update an existing contact')
-            }
+            handler: contactsController.updateContact
         },
         {
             method: 'DELETE',
             path: '/contacts/{id}',
-            handler: (request, reply) => {
-                reply('Delete an existing contact')
-                    .code(204)
-            }
+            handler: contactsController.deleteContact
         }
     ]
 };
