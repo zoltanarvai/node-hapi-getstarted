@@ -9,6 +9,15 @@ server.connection({
     port: port
 });
 
+let options = {
+    reporters: {
+        consoleReporter: [{
+            module: 'good-console',
+            args: [{ log: '*', response: '*' }]
+        }, 'stdout']
+    }
+};
+
 const routes = [
     {
         method: 'GET',
@@ -17,7 +26,11 @@ const routes = [
     }
 ];
 
-server.route(routes);
-
-server.start(()=> console.log(`Server running at ${hostname}:${port}`));
-
+server.register({ register: require('good'), options }, err => {
+    if(err){
+        server.error(`Something went wrong, can't start server.`)
+    } else {
+        server.route(routes)
+        server.start(() => console.log(`Server running at ${hostname}:${port}`))
+    }
+});
