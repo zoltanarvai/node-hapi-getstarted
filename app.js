@@ -1,4 +1,5 @@
 const Hapi = require('hapi');
+const configureRoutes = require('./routes')
 
 const hostname = 'localhost';
 const port = 3000;
@@ -18,19 +19,12 @@ let options = {
     }
 };
 
-const routes = [
-    {
-        method: 'GET',
-        path: '/',
-        handler: (request, reply) => reply('Welcome to Contacts Manager API')
-    }
-];
-
 server.register({ register: require('good'), options }, err => {
     if(err){
-        server.error(`Something went wrong, can't start server.`)
+        server.error(`Something went wrong, can't start server.`);
     } else {
-        server.route(routes)
-        server.start(() => console.log(`Server running at ${hostname}:${port}`))
+        const routes = configureRoutes();
+        server.route(routes);
+        server.start(() => console.log(`Server running at ${hostname}:${port}`));
     }
 });
