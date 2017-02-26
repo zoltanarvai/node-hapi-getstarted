@@ -18,6 +18,63 @@ describe('When getting all contacts', () => {
         return contactsService
             .getContacts(loadFromStore)
             .should.eventually.be.empty;
-
     });
+
+    it("should return a list of contacts when multiple contacts exist", () => {
+        const loadFromStore = () => asPromise(null, [
+            {
+                _id: 'id1',
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30
+            },
+            {
+                _id: 'id2',
+                firstName: 'Jane',
+                lastName: 'Doe',
+                age: 28
+            }
+        ]);
+
+        return contactsService
+            .getContacts(loadFromStore)
+            .should.eventually.deep.equal([
+                {
+                    id: 'id1',
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    age: 30
+                },
+                {
+                    id: 'id2',
+                    firstName: 'Jane',
+                    lastName: 'Doe',
+                    age: 28
+                }
+            ]);
+    });
+
+    it("should return firstName, lastName, age properties only and normalized id", () => {
+        //Easy to inject logic to get from store since getContacts is actually a pure function
+        const loadFromStore = () => asPromise(null, [
+            {
+                _id: 'id1',
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30,
+                v: 'zzz'
+            }
+        ]);
+
+        return contactsService
+            .getContacts(loadFromStore)
+            .should.eventually.deep.equal([
+                {
+                    id: 'id1',
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    age: 30
+                }
+            ]);
+    })
 });
