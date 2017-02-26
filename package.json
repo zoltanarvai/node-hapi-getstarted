@@ -1,0 +1,11 @@
+{
+  "name": "ContactsManagerAPI",
+  "version": "0.0.1",
+  "description": "API to add, create, update and modify contacts",
+  "main": "app.js",
+  "author": "Zoltan Arvai <zoltan.arvai@live.com>",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^16.1.0"
+  }
+}
