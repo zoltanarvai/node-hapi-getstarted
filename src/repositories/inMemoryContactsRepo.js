@@ -1,16 +1,6 @@
 const uuidV1 = require('uuid/v1');
+const { asPromise } = require('../utils');
 
-const asPromise = (error, result) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(function () {
-            if(error){
-                reject(error)
-            }else{
-                resolve(result)
-            }
-        }, 1);
-    });
-};
 
 module.exports = class ContactsRepo {
     constructor(contacts = []){

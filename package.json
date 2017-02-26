@@ -10,5 +10,13 @@
     "good-console": "^6.4.0",
     "hapi": "^16.1.0",
     "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^4.0.1",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
   }
 }

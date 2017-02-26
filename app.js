@@ -1,5 +1,5 @@
 const Hapi = require('hapi');
-const configureRoutes = require('./routes')
+const configureRoutes = require('./src/routes');
 
 const hostname = 'localhost';
 const port = 3000;
