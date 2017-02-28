@@ -19,7 +19,7 @@ const getContact = (request, reply) => {
 };
 
 const getContacts = (request, reply) => {
-    contactService
+    return contactService
         .getContacts(contactsRepo.getContacts)
         .then(contacts => reply(contacts))
         .catch(error => reply(Boom.badImplementation('Failed to get contacts', error)));
