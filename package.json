@@ -6,6 +6,7 @@
   "author": "Zoltan Arvai <zoltan.arvai@live.com>",
   "license": "MIT",
   "dependencies": {
+    "boom": "^4.2.0",
     "good": "^7.1.0",
     "good-console": "^6.4.0",
     "hapi": "^16.1.0",

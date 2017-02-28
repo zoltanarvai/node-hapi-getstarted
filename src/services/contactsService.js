@@ -1,14 +1,21 @@
 const toContact = (persistedContact) => {
-    return {
-        id: persistedContact._id,
-        firstName: persistedContact.firstName,
-        lastName: persistedContact.lastName,
-        age: persistedContact.age
-    };
+    if(persistedContact){
+        return {
+            id: persistedContact._id,
+            firstName: persistedContact.firstName,
+            lastName: persistedContact.lastName,
+            age: persistedContact.age
+        };
+    }else{
+        throw {
+            message: 'Contact cannot be null or undefined',
+            code: 'NoSuchContact'
+        }
+    }
 };
 
 const getContact = (id, loadById) => {
-    return loadById(id).then(toContact)
+    return loadById(id).then(toContact);
 };
 
 const getContacts = (load) => {

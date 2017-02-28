@@ -40,17 +40,28 @@ module.exports = class ContactsRepo {
             contactToUpdate.firstName = updatedContact.firstName;
             contactToUpdate.lastName = updatedContact.lastName;
             contactToUpdate.age = updatedContact.age;
-        }else{
-            return asPromise(new Error('Contact not found'), null)
-        }
 
-        return asPromise();
+            return asPromise();
+        }else{
+            return asPromise({
+                message: `Can't find contact with id: ${id}`,
+                code: 'NoSuchContact'
+            }, null)
+        }
     }
 
     removeContact(id){
         const indexToRemove = this.contacts.indexOf(contact => contact._id == id);
-        this.contacts.splice(indexToRemove, 1);
+        if(indexToRemove !== -1){
+            this.contacts.splice(indexToRemove, 1);
+            return asPromise();
+        }else{
+            return asPromise({
+                message: `Can't find contact with id: ${id}`,
+                code: 'NoSuchContact'
+            }, null)
+        }
+        
 
-        return asPromise();
     }
 };
