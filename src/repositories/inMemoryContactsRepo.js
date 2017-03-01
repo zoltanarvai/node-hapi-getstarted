@@ -51,8 +51,9 @@ module.exports = class ContactsRepo {
     }
 
     removeContact(id){
-        const indexToRemove = this.contacts.indexOf(contact => contact._id == id);
-        if(indexToRemove !== -1){
+        const contactToRemove = this.contacts.find(contact => contact._id === id);
+        if(contactToRemove){
+            const indexToRemove = this.contacts.indexOf(contactToRemove);
             this.contacts.splice(indexToRemove, 1);
             return asPromise();
         }else{
