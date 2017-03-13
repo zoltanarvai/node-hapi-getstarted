@@ -15,10 +15,12 @@ const toContact = (persistedContact) => {
 };
 
 const getContact = (id, loadById) => {
+    console.log('Returning a list of contact')
     return loadById(id).then(toContact);
 };
 
 const getContacts = (load) => {
+    console.log('Returning a list of contact')
     return load().then(persistedContacts => persistedContacts.map(toContact))
 };
 
